@@ -9,6 +9,7 @@ export const metadata = {
   description: 'application for reading books i read',
 };
 
+
 export default function RootLayout({children}) {
   return (
       <html lang="ja">

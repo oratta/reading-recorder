@@ -9,6 +9,7 @@ export async function getAllReviews() {
 }
 
 export function createBook(book){
+    console.log(book);
     const authors = book.volumeInfo.authors;
     const price = book.saleInfo.listPrice;
     const img = book.volumeInfo.imageLinks;
@@ -32,4 +33,18 @@ export async function getBooksByKeyword(keyword) {
         books.push(createBook(b));
     }
     return books;
+}
+
+export async function getBookById(id) {
+    const res = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}`);
+    const result = await res.json();
+    return createBook(result);
+}
+
+export async function getReviewById(id){
+    return await prisma.reviews.findUnique({
+        where: {
+            id: id
+        }
+    });
 }
